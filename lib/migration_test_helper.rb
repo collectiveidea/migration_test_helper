@@ -114,7 +114,7 @@ module MigrationTestHelper
     end
 
     def verify #:nodoc:
-      actual_tables = conn.tables.reject {|t| t == 'schema_info' }
+      actual_tables = conn.tables.reject {|t| t == 'schema_info' || t == 'schema_migrations'}
       expected_tables = @tables.map {|t| t.name }
       assert_equal expected_tables.sort, actual_tables.sort, 'wrong tables in schema'
     end
