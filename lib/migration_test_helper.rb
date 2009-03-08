@@ -155,5 +155,12 @@ module MigrationTestHelper
       actual_indexes = conn.indexes(@name).collect { |i| "name <#{i.name}> columns <#{i.columns.join(",")}> unique <#{i.unique}>" }
       assert_equal @indexes.sort, actual_indexes.sort, "wrong indexes for table: <#{name}>"
     end
+    
+    def method_missing(type, *columns)
+      options = columns.extract_options!
+      columns.each do |colname|
+        column colname, type, options
+      end
+    end
   end
 end
