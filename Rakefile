@@ -1,13 +1,13 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'hoe'
 
 desc 'Default: run unit tests.'
 task :default => :test
 
 desc 'Generate documentation for the migration_test_helper plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'MigrationTestHelper'
   rdoc.options << '--line-numbers' << '--inline-source'
