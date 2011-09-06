@@ -18,7 +18,7 @@ end
 
 GEM_VERSION = '1.3.3'
 
-Hoe.new('migration_test_helper',GEM_VERSION) do |p|
+Hoe.spec('migration_test_helper') do |p|
   p.author = "Micah Alles" 
   p.email = "micah@atomicobject.com" 
   p.url = "http://migrationtest.rubyforge.org" 
