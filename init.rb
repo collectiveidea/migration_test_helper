@@ -1,4 +1,4 @@
-if RAILS_ENV == 'test'
+if Rails.env.test?
   require 'migration_test_helper'
   require 'test/unit'
   Test::Unit::TestCase.class_eval do

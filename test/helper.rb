@@ -2,9 +2,9 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + '/../../../../config/environment')
 require 'logger'
 require 'fileutils'
-require 'test_help'
+require 'rails/test_help'
 
-plugin_path = RAILS_ROOT + "/vendor/plugins/migration_test_helper"
+plugin_path = Rails.root.to_s + "/vendor/plugins/migration_test_helper"
 
 config_location = File.expand_path(plugin_path + "/test/config/database.yml")
 
@@ -12,9 +12,9 @@ config = YAML::load(ERB.new(IO.read(config_location)).result)
 ActiveRecord::Base.logger = Logger.new(plugin_path + "/test/log/test.log")
 ActiveRecord::Base.establish_connection(config['test'])
 
-Test::Unit::TestCase.fixture_path = plugin_path + "/test/fixtures/"
+ActiveSupport::TestCase.fixture_path = plugin_path + "/test/fixtures/"
 
-$LOAD_PATH.unshift(Test::Unit::TestCase.fixture_path)
+$LOAD_PATH.unshift(ActiveSupport::TestCase.fixture_path)
 
 class Test::Unit::TestCase
   include FileUtils
