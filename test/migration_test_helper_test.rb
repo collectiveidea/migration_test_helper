@@ -162,7 +162,7 @@ class MigrationTestHelperTest < Test::Unit::TestCase
   end
 
   def test_should_drop_all_tables
-    assert_equal ['dogs','schema_info'].sort, ActiveRecord::Base.connection.tables.sort
+    assert_equal ['dogs','schema_migrations'].sort, ActiveRecord::Base.connection.tables.sort
     drop_all_tables
     assert_equal [], ActiveRecord::Base.connection.tables
     drop_all_tables
