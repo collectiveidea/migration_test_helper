@@ -241,7 +241,7 @@ class MigrationTestHelperTest < Test::Unit::TestCase
 
   def test_should_have_default_migration_dir_set
     MigrationTestHelper.migration_dir = nil
-    assert_equal File.expand_path(RAILS_ROOT + '/db/migrate'), MigrationTestHelper.migration_dir, 
+    assert_equal File.expand_path(Rails.root.to_s + '/db/migrate'), MigrationTestHelper.migration_dir, 
       "wrong default migration dir"
     
   end
