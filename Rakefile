@@ -34,6 +34,7 @@ test database.
 * fixed bug where test:migration was calling itself, thanks Patrick ;)
   EOS
   p.rubyforge_name = 'migrationtest'
+  p.test_globs = Dir["test/**/*_test.rb"]
 end
 
 desc "Generate and upload api docs to rubyforge"
