@@ -249,7 +249,7 @@ class MigrationTestHelperTest < Test::Unit::TestCase
   def test_should_raise_error_if_migration_fails
     MigrationTestHelper.migration_dir = plugin_path('test/db/migrate_bad')
     drop_all_tables
-    err = assert_raise RuntimeError do
+    err = assert_raise StandardError do
       migrate
     end
     assert_match(//i, err.message)  
