@@ -9,7 +9,7 @@
 ./LICENSE
 ./Manifest.txt
 ./Rakefile
-./README
+./README.txt
 ./tasks
 ./tasks/migration_test_helper_tasks.rake
 ./test
