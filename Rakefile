@@ -1,24 +1,24 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'hoe'
 
 desc 'Default: run unit tests.'
 task :default => :test
 
 desc 'Generate documentation for the migration_test_helper plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'MigrationTestHelper'
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('README.txt')
   rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
 GEM_VERSION = '1.3.3'
 
-Hoe.new('migration_test_helper',GEM_VERSION) do |p|
+Hoe.spec('migration_test_helper') do |p|
   p.author = "Micah Alles" 
   p.email = "micah@atomicobject.com" 
   p.url = "http://migrationtest.rubyforge.org" 
@@ -34,6 +34,7 @@ test database.
 * fixed bug where test:migration was calling itself, thanks Patrick ;)
   EOS
   p.rubyforge_name = 'migrationtest'
+  p.test_globs = Dir["test/**/*_test.rb"]
 end
 
 desc "Generate and upload api docs to rubyforge"

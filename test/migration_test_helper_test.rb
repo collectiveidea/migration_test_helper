@@ -162,7 +162,7 @@ class MigrationTestHelperTest < Test::Unit::TestCase
   end
 
   def test_should_drop_all_tables
-    assert_equal ['dogs','schema_info'].sort, ActiveRecord::Base.connection.tables.sort
+    assert_equal ['dogs','schema_migrations'].sort, ActiveRecord::Base.connection.tables.sort
     drop_all_tables
     assert_equal [], ActiveRecord::Base.connection.tables
     drop_all_tables
@@ -241,7 +241,7 @@ class MigrationTestHelperTest < Test::Unit::TestCase
 
   def test_should_have_default_migration_dir_set
     MigrationTestHelper.migration_dir = nil
-    assert_equal File.expand_path(RAILS_ROOT + '/db/migrate'), MigrationTestHelper.migration_dir, 
+    assert_equal File.expand_path(Rails.root.to_s + '/db/migrate'), MigrationTestHelper.migration_dir, 
       "wrong default migration dir"
     
   end
@@ -249,7 +249,7 @@ class MigrationTestHelperTest < Test::Unit::TestCase
   def test_should_raise_error_if_migration_fails
     MigrationTestHelper.migration_dir = plugin_path('test/db/migrate_bad')
     drop_all_tables
-    err = assert_raise RuntimeError do
+    err = assert_raise StandardError do
       migrate
     end
     assert_match(//i, err.message)  

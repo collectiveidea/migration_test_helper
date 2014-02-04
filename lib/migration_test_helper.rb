@@ -25,7 +25,7 @@ require 'test/unit/assertions'
 
 module MigrationTestHelper 
   def self.migration_dir
-    @migration_dir || File.expand_path(RAILS_ROOT + '/db/migrate')
+    @migration_dir || File.expand_path(Rails.root.to_s + '/db/migrate')
   end
 
   #
